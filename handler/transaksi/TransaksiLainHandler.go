@@ -9,7 +9,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-func FindTransaksiPeriode(ctx *fiber.Ctx) error {
+func FindTransaksiLainPeriode(ctx *fiber.Ctx) error {
 	nis := ctx.Params("nis")
 	tahunajaran := ctx.Params("tahunajaran")
 	nisSiswa, _ := strconv.Atoi(nis)
