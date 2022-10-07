@@ -9,9 +9,5 @@ func ValidateJwt() bool {
 		SigningKey: []byte("21RChLoDHkKQ03sWkQScxK6vtSR98pQr6hNzcegESoVhW3NRpyIoN12QyhoiHS72"),
 	})
 
-	if err != nil {
-		return false
-	}
-
-	return true
+	return err != nil
 }
