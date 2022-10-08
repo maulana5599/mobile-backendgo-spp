@@ -6,7 +6,7 @@ services:
       dockerfile: Dockerfile
       context: .
     image: backend-go-aljun
-    container_name: be-aljun
+    container_name: backend-spp
     ports:
       - 1324:1323
     restart: "unless-stopped"
