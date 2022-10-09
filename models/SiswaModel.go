@@ -7,7 +7,10 @@ import (
 
 func FindSiswaByNis(nis int) (*entity.Siswa, error) {
 	var siswa *entity.Siswa
-	tx := config.DB.Where("NIS", nis).First(&siswa)
+	tx := config.DB.Where("NIS", nis).
+		Select("siswa.*, jurusan.jurusan").
+		Joins("join jurusan on siswa.jurusan = jurusan.id_jurusan").
+		First(&siswa)
 	if tx.Error != nil {
 		return siswa, tx.Error
 	}
