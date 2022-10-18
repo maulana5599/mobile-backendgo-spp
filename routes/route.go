@@ -1,6 +1,7 @@
 package routes
 
 import (
+	handlerAuth "mobile-backendgo-spp/handler/auth"
 	handlerKeuangan "mobile-backendgo-spp/handler/keuangan"
 	handlerMaster "mobile-backendgo-spp/handler/master"
 	handlerTransaksi "mobile-backendgo-spp/handler/transaksi"
@@ -23,9 +24,13 @@ func RouteInit(app *fiber.App) {
 
 	/** Handler Transaksi Spp */
 	TransaksiSpp(app)
+
+	/** Handler Auth */
+	Auth(app)
 }
 
 func SiswaRoutes(app *fiber.App) {
+	// middleware.ValidateJwt(app)
 	v1 := app.Group("v1")
 	v1.Get("/siswa/:nis", handlerMaster.FindSiswaByNis)
 }
@@ -49,4 +54,8 @@ func TransaksiLain(app *fiber.App) {
 func TransaksiSpp(app *fiber.App) {
 	v1 := app.Group("v1")
 	v1.Get("/transaksi-spp-periode/:nis/:tahunajaran", handlerTransaksi.FindTransaksiDetailPeriode)
+}
+
+func Auth(app *fiber.App) {
+	app.Get("/auth", handlerAuth.Auth)
 }

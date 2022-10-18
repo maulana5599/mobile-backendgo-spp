@@ -19,5 +19,8 @@ func FindSiswaByNis(ctx *fiber.Ctx) error {
 		return helpers.ResponseError(http.StatusNotFound, err.Error(), ctx)
 	}
 
-	return helpers.ResponseSuccess(http.StatusOK, "Get data successfully", ctx, result)
+	return helpers.ResponseSuccess(http.StatusOK, "Get data successfully", ctx, fiber.Map{
+		"result": result,
+		"name":   ctx.Get("Authorization"),
+	})
 }

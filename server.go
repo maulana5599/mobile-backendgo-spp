@@ -25,6 +25,12 @@ func main() {
 	// 	SigningKey: []byte("21RChLoDHkKQ03sWkQScxK6vtSR98pQr6hNzcegESoVhW3NRpyIoN12QyhoiHS72"),
 	// }))
 
+	app.Use(func(c *fiber.Ctx) error {
+		c.Locals("user", "admin")
+		c.Locals("Authorization")
+		return c.Next()
+	})
+
 	app.Get("/", func(c *fiber.Ctx) error {
 		return c.SendString("Hello, World 👋!")
 	})
